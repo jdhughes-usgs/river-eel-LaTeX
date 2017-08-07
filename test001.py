@@ -81,7 +81,7 @@ def test_build2():
     assert ierr == 0, 'Error on third call to pdflatex ({})'.format(ierr)
 
     
-def test_pdf():
+def test_pdf2():
     assert os.path.isfile('main.pdf'), 'main.pdf does not exist'
    
     return
