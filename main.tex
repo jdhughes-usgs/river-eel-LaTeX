@@ -2,6 +2,8 @@
 
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage{caption}
+\usepackage{natbib}
 
 \title{LaTeX and CI Services Example}
 
@@ -12,8 +14,10 @@
 \begin{document}
 \maketitle
 
-Check out my guide on using ci services for LaTeX projects: \url{http://jankuester.com/using-travis-ci-latex-projects}
+Check out my guide on using ci services for LaTeX projects: \url{http://jankuester.com/using-travis-ci-latex-projects}. Add a reference \citep{modflow6gwf}.
 
+\bibliography{MODFLOW6References}
+\bibliographystyle{usgs.bst}
 
 
 \end{document}
