@@ -42,6 +42,51 @@ def test_pdf():
     assert os.path.isfile('main.pdf'), 'main.pdf does not exist'
 
 
+def test_clean2():
+    ierr = 0
+    try:
+        os.remove('main.pdf')
+    except:
+        ierr = 1
+    assert ierr == 0, 'could not remove main.pdf'
+
+    ierr = 0
+    try:
+        os.remove('main.aux')
+    except:
+        ierr = 1
+    assert ierr == 0, 'could not remove main.aux'
+    
+    return
+
+
+def test_build2():
+    pth = './'
+    
+    # build pdf
+    argv = ['pdflatex', 'main.tex']
+    ierr = run_command(argv, pth)
+    assert ierr == 0, 'Error on first call to pdflatex ({})'.format(ierr)
+
+    argv = ['bibtex', 'main.aux']
+    ierr = run_command(argv, pth)
+    assert ierr == 0, 'Error on bibtex call ({})'.format(ierr)
+
+    argv = ['pdflatex', 'main.tex']
+    ierr = run_command(argv, pth)
+    assert ierr == 0, 'Error on second call to pdflatex ({})'.format(ierr)
+
+    argv = ['pdflatex', 'main.tex']
+    ierr = run_command(argv, pth)
+    assert ierr == 0, 'Error on third call to pdflatex ({})'.format(ierr)
+
+    
+def test_pdf():
+    assert os.path.isfile('main.pdf'), 'main.pdf does not exist'
+   
+    return
+
+
 
 def run_command(argv, pth):
     try:
