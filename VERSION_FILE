@@ -1,5 +1,5 @@
 # MODFLOW 6 version file automatically created using...pre-commit.py
-# created on...08/09/2017 at 15:40:42
+# created on...08/09/2017 at 15:43:52
 #
 # major = major release number
 # minor = minor release number
@@ -9,8 +9,8 @@
 major = 0
 minor = 9
 micro = 0
-build = 11
-commit = 17
+build = 12
+commit = 18
 version = 0.9.0
-develop_version = 0.9.0.11
+develop_version = 0.9.0.12
 commit_date = 08/09/2017

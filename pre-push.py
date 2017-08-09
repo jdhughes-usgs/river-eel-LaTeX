@@ -47,11 +47,17 @@ def add_tag(tag):
     tag the git repo with the new version
     """
     try:
-        # tagit = subprocess.check_output('git tag {}'.format(tag))
+        print('create tag')
         args = ('git', 'tag', '-f', '-a', '{}'.format(tag},
                 '-m', '"current build"')
         b = subprocess.Popen(args,
                              stdout=subprocess.PIPE).communicate()[0]
+        print('created tag')
+        print('push tag')
+        args = ('git', 'push', '-f', '--tags')
+        b = subprocess.Popen(args,
+                             stdout=subprocess.PIPE).communicate()[0]
+        print('pushed tag')
     except:
         msg = 'tagging not successful'
         raise Exception(msg)
