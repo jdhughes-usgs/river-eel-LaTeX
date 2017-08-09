@@ -9,27 +9,29 @@ import datetime
 pak = 'MODFLOW 6'
 fpth = 'VERSION_FILE'
 vpth = 'version.tex'
+
+
 def get_version_str(v0, v1, v2, v3):
-    version_type = ('{}'.format(v0), 
-                    '{}'.format(v1), 
-                    '{}'.format(v2), 
+    version_type = ('{}'.format(v0),
+                    '{}'.format(v1),
+                    '{}'.format(v2),
                     '{}'.format(v3))
     version = '.'.join(version_type)
-    return version 
+    return version
 
-    
+
 def get_tag(v0, v1, v2):
-    tag_type = ('{}'.format(v0), 
-                '{}'.format(v1), 
+    tag_type = ('{}'.format(v0),
+                '{}'.format(v1),
                 '{}'.format(v2))
     tag = '.'.join(tag_type)
     return tag
-     
+
 
 def update_version():
     try:
         pth = os.path.join(fpth)
-        
+
         vmajor = 0
         vminor = 0
         vmicro = 0
@@ -47,9 +49,9 @@ def update_version():
                 vmicro = int(t[2])
             elif 'build =' in line:
                 vbuild = int(t[2])
-        
+
         v0 = get_version_str(vmajor, vminor, vmicro, vbuild)
-        
+
         # get latest build number
         tag = get_version_str(vmajor, vminor, vmicro, 0)
         print('determining version build from {}'.format(tag))
@@ -60,23 +62,23 @@ def update_version():
         # assume if tag does not exist that it has not been added
         except:
             vbuild = 0
-    
+
         v1 = get_version_str(vmajor, vminor, vmicro, vbuild)
-    
+
         # get current build number
         b = subprocess.Popen(("git", "describe", "--match", "0.0.0.0"),
                              stdout=subprocess.PIPE).communicate()[0]
         vcommit = int(b.decode().strip().split('-')[1]) + 2
-    
+
         cdatetime = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         t = cdatetime.split()
         cdate = t[0]
         ctime = t[1]
         cdv = '{:d}.{:d}.{:d}.{:d}'.format(vmajor, vminor, vmicro, vbuild)
-        
+
         print('Updating version:')
         print('  ', v0, '->', v1)
-    
+
         # write new version file
         f = open(pth, 'w')
         f.write('# {} version file automatically '.format(pak) +
@@ -98,7 +100,7 @@ def update_version():
         f.write('commit_date = {}\n'.format(cdate))
         f.close()
         print('Succesfully updated {}'.format(fpth))
-        
+
         pth = os.path.join(vpth)
         f = open(pth, 'w')
         c = r'\newcommand{\version}{Version '
@@ -107,10 +109,11 @@ def update_version():
         f.write(c)
         f.close()
         print('Succesfully updated {}'.format(vpth))
-        
+
     except:
         print('There was a problem updating the {}'.format(fpth))
         sys.exit(1)
+
 
 def add_updated_version():
     try:
@@ -124,9 +127,9 @@ def add_updated_version():
                              stdout=subprocess.PIPE).communicate()[0]
     except:
         print('Could not add updated version of {}'.format(fpth))
-        sys.exit(1) 
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     update_version()
     add_updated_version()
-    
