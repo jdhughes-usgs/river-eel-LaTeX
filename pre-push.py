@@ -50,7 +50,7 @@ def add_tag(tag):
         # tagit = subprocess.check_output('git tag {}'.format(tag))
         cmd = 'git tag -f current_build -m "current build"'
         tagit = subprocess.check_output(cmd)
-    except CalledProcessError as e:
+    except subprocess.CalledProcessError as e:
         msg = 'tagging not successful: ' + \
               '{} {}'.format(e.output, e.returncode)
         raise Exception(msg)
