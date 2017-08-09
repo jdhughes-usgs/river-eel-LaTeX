@@ -52,7 +52,7 @@ def add_tag(tag):
                 '-m', '"current build"')
         b = subprocess.Popen(args,
                              stdout=subprocess.PIPE).communicate()[0]
-        print('finshed creating tag')
+        print('finished creating tag')
     except:
         msg = 'tagging not successful'
         raise Exception(msg)
