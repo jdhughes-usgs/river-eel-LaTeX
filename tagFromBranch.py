@@ -33,7 +33,7 @@ def get_version():
             elif 'build =' in line:
                 vbuild = int(t[2])
 
-        tag = '{:d}.{:d}.{:d}.{:d}'.format(vmajor, vminor, vmicro, 0)
+        tag = '{:d}.{:d}.{:d}.{:d}'.format(vmajor, vminor, vmicro, vbuild)
         print('tag to add: {}'.format(tag))
     except:
         print('There was a problem parsing {}'.format(fpth))
@@ -48,7 +48,7 @@ def add_tag(tag):
     """
     try:
         print('creating tag')
-        args = ('git', 'tag', '-f', '-a', 'current_commit',
+        args = ('git', 'tag', '-f', '-a', '{}'.format(tag),
                 '-m', '"current build"')
         b = subprocess.Popen(args,
                              stdout=subprocess.PIPE).communicate()[0]
