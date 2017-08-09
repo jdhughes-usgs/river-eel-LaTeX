@@ -48,7 +48,7 @@ def add_tag(tag):
     """
     try:
         # tagit = subprocess.check_output('git tag {}'.format(tag))
-        cmd = 'git tag -f current_build -m "current build"'
+        cmd = 'git tag -f -a current_build -m "current build"'
         tagit = subprocess.check_output(cmd)
     except subprocess.CalledProcessError as e:
         msg = 'tagging not successful: ' + \
