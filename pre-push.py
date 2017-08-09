@@ -48,7 +48,7 @@ def add_tag(tag):
     """
     try:
         print('create tag')
-        args = ('git', 'tag', '-f', '-a', '{}'.format(tag},
+        args = ('git', 'tag', '-f', '-a', '{}'.format(tag),
                 '-m', '"current build"')
         b = subprocess.Popen(args,
                              stdout=subprocess.PIPE).communicate()[0]
