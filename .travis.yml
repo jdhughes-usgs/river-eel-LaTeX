@@ -1,29 +1,31 @@
 sudo: require
-dist: trusty #precise #xenial
+dist: trusty
 language: python
-
 matrix:
   include:
-    - python: 3.6
-
+  - python: 3.6
 cache:
   apt: true
   directories:
-    - $HOME/.local
-
+  - $HOME/.local
 addons:
   apt:
     sources:
-      - kalakris-cmake
-      - ubuntu-toolchain-r-test
+    - kalakris-cmake
+    - ubuntu-toolchain-r-test
     packages:
-      - texlive-base
-      - texlive-latex-base
-      - texlive-latex-extra
-      - texlive-fonts-recommended
-      - texlive-fonts-extra
-
+    - texlive-base
+    - texlive-latex-base
+    - texlive-latex-extra
+    - texlive-fonts-recommended
+    - texlive-fonts-extra
 script:
-  #- bash test.sh ./ main
-   - export PYTHONPATH=$PYTHONPATH:.
-   - nosetests -v
+- export PYTHONPATH=$PYTHONPATH:.
+- nosetests -v
+deploy:
+  provider: releases
+  api_key:
+    secure: EjQYGVMWXHuDPH90zRLUD08Vec1b9f9NNFECNnfLq0s0pLTmq8/Wd7n9bN3pz5MmUOW4uT/SVP7sVfMAMMXU7ukkendr+AztMjdy2Zp0F1IDvPxj/ZWO7IWtFYuk21216hreqxZ58E9k5Arr8aGB3oEfUhyTzo9h14kJfsZiXOU00aOqicAFD9niFT2+YtBTb0D/LSqPzhbA9hGdYFvnEMACq0e5CD46AmxMw9y8CaznALsiV9xEd7mjussDpDmJpSNAnzIobnjiCieJHilRvhNtvdHXoTo/rjp3/GPbxgrSzPg/0PecQ7dpydLaWFOvlWlcWRUpvIYzITD3vTXtsxwx1HQ5C/eYssqIlcxfXgdEP1CVrzl2CmnvqO3lgQYsw8vHx/7QAO+T2kcsE/QrfYLduxy1pI3s3NPASVvkNVhQA/gqC5Tt+UHOmxnJAe5p68t1og4677G6nYPE1/CrUlAOIOtU04fqrbTZcWPwjrTjjG1sE/7s+ScLD/jrMJCI/EFZpDUlItEcHgXIlPrCOD4qzINMeeJjAj2TLwnHgHv20cZq66fFLVMc6R4VWVwDk6wI5QWfLEs6wkGWNShaoiYbTue4TQAFbAPYBNhX7rCapqNVsDc7MHgfKhk4nR5R0K4KT03gCB+UH/rhTusTBqchMjrsQSpwUyhMB0lCZUc=
+  file: main.pdf
+  on:
+    repo: jdhughes-usgs/river-eel-LaTeX
