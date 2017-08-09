@@ -5,3 +5,5 @@
 *.gz
 *.bbl
 *.blg
+
+.idea/
