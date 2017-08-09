@@ -1,5 +1,5 @@
 #!/bin/sh
-echo 'Running python'
+echo 'Running update hook with python'
 python pre-push.py
 
-echo 'Finished pre-push'
+echo 'Finished update hook'
