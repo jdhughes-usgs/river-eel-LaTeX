@@ -47,8 +47,8 @@ def add_tag(tag):
     tag the git repo with the new version
     """
     try:
-        output = subprocess.check_output('git tag {}'.format(tag))
-        output = subprocess.check_output('git push --tags')
+        tagit = subprocess.check_output('git tag {}'.format(tag))
+        pushit = subprocess.check_output('git push --tags')
     except CalledProcessError as e:
         msg = 'tagging not successful: ' + \
               '{} {}'.format(e.output, e.returncode)
